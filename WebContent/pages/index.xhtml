@@ -34,6 +34,7 @@
 
 					<p:column headerText="Selecionar">
 						<p:commandButton icon="ui-icon-arrowthickstop-1-s"
+							update=":formBaixar:panelGridBaixar"
 							oncomplete="PF('dialogBaixar').show();">
 							<f:setPropertyActionListener value="#{item}"
 								target="#{MBDecodificador.nomeDoEstado}" />
@@ -43,24 +44,23 @@
 			</h:form>
 		</p:layoutUnit>
 	</p:layout>
-	
-	<p:dialog widgetVar="dialogBaixar" draggable="true"
-			header="Imagem" modal="true" appendTo="@(body)"
-			resizable="false">
 
-			<h:form id="formBaixar">
-				<h:panelGrid id="panelGridEditar" columns="2">
-					<h:outputText value="Baixar a imagem:  " />
-					<h:outputText value="#{MBDecodificador.nomeDoEstado}" />
-				</h:panelGrid>
+	<p:dialog widgetVar="dialogBaixar" draggable="true" header="Imagem"
+		modal="true" appendTo="@(body)" resizable="false">
 
-				<h:panelGrid columns="2">
-					<p:commandButton value="Salvar"
-						actionListener="#{MBDecodificador.carregarImagem}"
-						oncomplete="PF('dialogBaixar').hide();"/>
-				</h:panelGrid>
-			</h:form>
-		</p:dialog>
+		<h:form id="formBaixar">
+			<h:panelGrid id="panelGridBaixar" columns="2">
+				<h:outputText value="Baixar a imagem:  " />
+				<h:outputText value="#{MBDecodificador.nomeDoEstado}" />
+			</h:panelGrid>
+
+			<h:panelGrid columns="2">
+				<p:commandButton value="Salvar"
+					actionListener="#{MBDecodificador.carregarImagem}"
+					oncomplete="PF('dialogBaixar').hide();" />
+			</h:panelGrid>
+		</h:form>
+	</p:dialog>
 
 
 </h:body>
